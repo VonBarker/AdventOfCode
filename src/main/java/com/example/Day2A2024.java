@@ -4,20 +4,24 @@ import java.util.ArrayList;
 
 public class Day2A2024 {
     public static void main(String[] args) {
+        // Get the data and store as a list of inputs
         ArrayList<String> inputs;
         inputs = ReadFile.getInput("src/main/resources/2024/Day2Input.txt");
         System.out.println(inputs);
         if (inputs.size() > 0) {
             Integer amountSafe = 0;
-            for (int i = 0; i<inputs.size(); i++) {
-                String currentData = inputs.get(i);
-                System.out.println(currentData);
-                String[] splitData = currentData.split(" ");
+
+            // Loop through each report and check to see if it is safe or not
+            for (String i : inputs) {
+                System.out.println(i);
+                String[] splitData = i.split(" ");
                 ArrayList<Integer> splitDataList = new ArrayList<Integer>();
-                for(int j = 0;j < splitData.length;j++) {
-                    splitDataList.add(Integer.parseInt(splitData[j]));
+                for(String j : splitData) {
+                    splitDataList.add(Integer.parseInt(j));
                 } 
                 System.out.println(splitDataList);
+
+                // Check to see if the report is increasing or decreasing
                 Integer currentLevel = splitDataList.get(0);
                 Integer nextLevel = splitDataList.get(1);
                 Integer difference = currentLevel - nextLevel;
@@ -25,15 +29,20 @@ public class Day2A2024 {
                 if (difference < 0) increasingOrDecreasing = "increasing";
                 else if (difference > 0) increasingOrDecreasing = "decreasing";
                 else increasingOrDecreasing = "neither";
-                for(int z = 0;z < splitData.length - 1;z++) {
+
+                // Loop through levels and as soon as it is unsafe break out. If it makes it to the end then it is safe
+                for(int z = 0;z < splitDataList.size() - 1;z++) {
                     currentLevel = splitDataList.get(z);
                     nextLevel = splitDataList.get(z + 1);
                     if (increasingOrDecreasing == "neither") break;
                     if (increasingOrDecreasing == "increasing") difference = nextLevel - currentLevel;
                     if (increasingOrDecreasing == "decreasing") difference = currentLevel - nextLevel;
                     if (difference < 1 || difference > 3) break;
-                    if (z == splitData.length - 2) amountSafe += 1;
+
+                    // If we make it through the loop, it's safe, add 1 to the number of safe reports
+                    if (z == splitDataList.size() - 2) amountSafe += 1;
                 }
+                // Output the number of safe reports
                 System.out.println(amountSafe);
             }
         }
