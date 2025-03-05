@@ -2,7 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 
-public class Day2A {
+public class Day2A2015 {
     public static void main(String[] args) {
         ArrayList<String> inputs;
         inputs = ReadFile.getInput("src/main/resources/2015/Day2Input.txt");
