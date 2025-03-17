@@ -11,7 +11,7 @@ public class Day2A2024 {
         if (inputs.size() > 0) {
             Integer amountSafe = 0;
 
-            // Loop through each report and check to see if it is safe or not
+            // Loop through each input and check to see if it is safe or not
             for (String i : inputs) {
                 System.out.println(i);
                 String[] splitData = i.split(" ");
@@ -21,7 +21,7 @@ public class Day2A2024 {
                 } 
                 System.out.println(splitDataList);
 
-                // Check to see if the report is increasing or decreasing
+                // Check to see if the input is increasing or decreasing
                 Integer currentLevel = splitDataList.get(0);
                 Integer nextLevel = splitDataList.get(1);
                 Integer difference = currentLevel - nextLevel;
@@ -39,10 +39,10 @@ public class Day2A2024 {
                     if (increasingOrDecreasing == "decreasing") difference = currentLevel - nextLevel;
                     if (difference < 1 || difference > 3) break;
 
-                    // If we make it through the loop, it's safe, add 1 to the number of safe reports
+                    // If we make it through the loop, it's safe, add 1 to the number of safe inputs
                     if (z == splitDataList.size() - 2) amountSafe += 1;
                 }
-                // Output the number of safe reports
+                // Output the number of safe inputs
                 System.out.println(amountSafe);
             }
         }
